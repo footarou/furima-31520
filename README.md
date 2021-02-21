@@ -17,7 +17,7 @@
 ### Association
 
 - has_many :items
-- has_many :purchase_record
+- has_many :purchase_records
 
 ## Itemsテーブル
 
@@ -40,8 +40,8 @@
 ## Purchase_recordsテーブル
 | Column                   | Type           |  Options                        |
 | ------------------------ | -------------- | ------------------------------- |
-| user                     | reference      | null: false, foreign_key: true  |
-| item                     | reference      | null: false, foreign_key: true  |
+| user                     | references     | null: false, foreign_key: true  |
+| item                     | references     | null: false, foreign_key: true  |
 
 ### Association
 - belongs_to :user
@@ -49,15 +49,15 @@
 - has_one :address
 
 ## Addressesテーブル
-| Column            | Type      |  Options                        |
-| ----------------  | --------- | ------------------------------- |
-| zip_code          | string    | null: false                     |
-| prefecture_id     | integer   | null: false                     |                     
-| municipality      | string    | null: false                     |                     
-| address           | string    | null: false                     |
-| building          | string    |                                 |
-| phone_no          | string    | null: false                     |
-| purchase_record   | reference | null: false, foreign_key: true  |
+| Column            | Type       |  Options                        |
+| ----------------  | ---------- | ------------------------------- |
+| zip_code          | string     | null: false                     |
+| prefecture_id     | integer    | null: false                     |                     
+| municipality      | string     | null: false                     |                     
+| address           | string     | null: false                     |
+| building          | string     |                                 |
+| phone_no          | string     | null: false                     |
+| purchase_record   | references | null: false, foreign_key: true  |
 
 
 ### Association
