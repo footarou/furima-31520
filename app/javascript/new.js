@@ -7,9 +7,9 @@ window.addEventListener('load', function(){
 
   CommissionProfit.addEventListener('input', function(){
     const inputValue = CommissionProfit.value
-    console.log(inputValue)
+
   // 　計算と表示
-    Commission.innerHTML = inputValue * 0.1
-    Profit.innerHTML = inputValue * 0.9    
+    Commission.innerHTML = Math.floor(inputValue * 0.1)
+    Profit.innerHTML = Math.floor(inputValue * 0.9)    
   })
 })
