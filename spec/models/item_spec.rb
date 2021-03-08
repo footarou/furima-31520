@@ -23,12 +23,12 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Memo can't be blank")
       end
       it 'category_idが1だと登録できない' do
-        @item.category_id = '1'
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
       it 'condition_idが1だと登録できない' do
-        @item.condition_id = '1'
+        @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition must be other than 1")
       end
@@ -38,12 +38,12 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price is not a number", "Price is invalid. Input half-width numbers.")
       end
       it 'priceが299円以下空だと登録できない' do
-        @item.price = '299'
+        @item.price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be greater than 300")
       end
       it 'priceが10,000,000円以上だと登録できない' do
-        @item.price = '10000000'
+        @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be less than 10000000")
       end
@@ -53,17 +53,17 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price is not a number")
       end
       it 'days_to_ship_idが1だと登録できない' do
-        @item.days_to_ship_id = '1'
+        @item.days_to_ship_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Days to ship must be other than 1")
       end
       it 'shipping_fee_idが1だと登録できない' do
-        @item.shipping_fee_id = '1'
+        @item.shipping_fee_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping fee must be other than 1")
       end
       it 'ship_from_idが1だと登録できない' do
-        @item.ship_from_id = '1'
+        @item.ship_from_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Ship from must be other than 1")
       end
