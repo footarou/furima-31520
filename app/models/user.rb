@@ -17,4 +17,3 @@ class User < ApplicationRecord
     validates :password, format: { with: VALID_PASSWORD_REGEX, message: '半角英数字混合を入力してください' }
   end
 end
-
