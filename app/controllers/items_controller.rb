@@ -21,9 +21,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if user_signed_in? && current_user.id != @item.user_id
-      redirect_to root_path
-    end
   end
 
   def show
@@ -52,7 +49,7 @@ class ItemsController < ApplicationController
   end
 
   def user_singed_in
-    if user_signed_in? && current_user.id != @item.user_id
+    if dcurrent_user.id != @item.user_id
       redirect_to root_path
     end 
   end
