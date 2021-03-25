@@ -8,7 +8,6 @@ class OrdersController < ApplicationController
 
   def create
     @shopper_info = ShopperInfo.new(shopper_params)
-    binding.pry
      if @shopper_info.valid?
        pay_item
        @shopper_info.save
@@ -29,7 +28,7 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = "sk_test_5a946b0c90462a6d8febf1a1"
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
       amount: Item.find(shopper_params[:item_id]).price,
       card: shopper_params[:token],
