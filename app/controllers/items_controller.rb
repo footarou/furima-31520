@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:edit, :show, :update, :destroy]
   before_action :user_comfirmation, only: [:edit, :update, :destroy]
+  before_action :access_prevention, only: [:edit]
 
   def index
     @items = Item.order('created_at DESC')
@@ -52,5 +53,9 @@ class ItemsController < ApplicationController
   def user_comfirmation
     redirect_to root_path if current_user.id != @item.user_id
   end
-  
+
+  def access_prevention
+    redirect_to root_path if @item.purchase_record != nil
+  end
+
 end

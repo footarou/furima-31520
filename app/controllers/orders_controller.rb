@@ -2,13 +2,11 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :set_item, only: [:index, :create]
   before_action :user_comfirmation, only: [:index, :create] 
+  before_action :access_prevention, only: [:index, :create]
+
 
   def index
-    if @item.purchase_record == nil  
       @shopper_info = ShopperInfo.new
-    else
-      redirect_to root_path
-    end
   end
 
   def create
@@ -44,6 +42,11 @@ class OrdersController < ApplicationController
   def user_comfirmation
     redirect_to root_path if current_user.id == @item.user_id
   end
+
+  def access_prevention
+    redirect_to root_path if @item.purchase_record != nil
+  end
+      
 
 end
 
