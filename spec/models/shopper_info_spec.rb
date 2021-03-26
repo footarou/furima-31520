@@ -13,6 +13,10 @@ RSpec.describe ShopperInfo, type: :model do
       it "priceとtokenがあれば保存ができること" do
         expect(@order).to be_valid
       end
+      it "建物名が未入力でも購入できること" do
+        @order.building = nil
+        expect(@order).to be_valid
+      end
     end
 
     context '商品出品がうまくいかないとき' do
@@ -64,6 +68,29 @@ RSpec.describe ShopperInfo, type: :model do
         expect(@order.errors.full_messages).to include("Phone no is invalid")
       end
 
+      it "ユーザーのidが存在しない場合、購入できないこと" do
+        @order.user_id = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("User can't be blank")
+      end      
+
+      it "商品のidが存在しない場合、購入できないこと" do
+        @order.item_id = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Item can't be blank")
+      end
+
+      it "電話番号は12桁以上では登録できないこと" do
+        @order.phone_no = "012345678901"
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Phone no is invalid")
+      end
+
+      it "電話番号は英数混合では登録できないこと" do
+        @order.phone_no = "1a2b3c45678"
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Phone no is invalid")
+      end
     end
   end    
 end
