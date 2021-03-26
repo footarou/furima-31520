@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :user
+  has_one :purchase_record
   has_one_attached :image
 
   with_options presence: true do
@@ -13,7 +14,7 @@ class Item < ApplicationRecord
       validates :condition_id
       validates :days_to_ship_id
       validates :shipping_fee_id
-      validates :ship_from_id
+      validates :prefecture_id
     end
   end
 
@@ -21,6 +22,6 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :condition
   belongs_to :shipping_fee
-  belongs_to :ship_from
+  belongs_to :prefecture
   belongs_to :days_to_ship
 end
